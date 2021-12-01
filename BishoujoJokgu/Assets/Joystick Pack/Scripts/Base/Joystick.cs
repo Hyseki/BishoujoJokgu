@@ -57,6 +57,8 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         handle.anchoredPosition = Vector2.zero;
     }
 
+
+
     public virtual void OnPointerDown(PointerEventData eventData)
     {
         OnDrag(eventData);
@@ -74,6 +76,9 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         FormatInput();
         HandleInput(input.magnitude, input.normalized, radius, cam);
         handle.anchoredPosition = input * radius * handleRange;
+        //Debug.Log(input);
+        //Debug.Log(input.magnitude);
+        GameManager.GetInstance().SetCharacterMoveVector(input, input.magnitude, true);
     }
 
     protected virtual void HandleInput(float magnitude, Vector2 normalised, Vector2 radius, Camera cam)
@@ -133,6 +138,9 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
     {
         input = Vector2.zero;
         handle.anchoredPosition = Vector2.zero;
+        GameManager.GetInstance().SetCharacterMoveVector(input, 0, false);
+
+
     }
 
     protected Vector2 ScreenPointToAnchoredPosition(Vector2 screenPosition)
