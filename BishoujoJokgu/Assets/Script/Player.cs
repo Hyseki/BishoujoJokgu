@@ -4,22 +4,35 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    Vector3 moveVector3;
-    float moveSpeed;
-    bool isMove = false;
-    // Start is called before the first frame update
-    void Start()
+	private Vector3 moveVector3;
+	private float moveSpeed;
+	private bool isMove = false;
+
+	// Start is called before the first frame update
+	private void Start()
     {
         moveVector3 = new Vector3(0, 0, 0);
     }
 
-    // Update is called once per frame
-    void Update()
+	// Update is called once per frame
+	private void Update()
     {
         MoveUpdate();
+
+        if (Input.GetMouseButtonDown(0))
+		{
+            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out RaycastHit hit))
+			{
+                var ball = Instantiate(Resources.Load<GameObject>("Ball"));
+                ball.GetComponent<Rigidbody>().AddForce(hit.point, ForceMode.Impulse);
+
+                // hit.point랑 방향벡터로 포물선식 구현하기
+			}
+		}
     }
 
-    void MoveUpdate()
+	private void MoveUpdate()
     {
         if (!isMove)
             return;
