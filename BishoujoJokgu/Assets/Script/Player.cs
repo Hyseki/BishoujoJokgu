@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-	private Vector3 moveVector3;
+    private Vector3 moveVector3;
 	private float moveSpeed;
 	private bool isMove = false;
 
@@ -25,9 +25,8 @@ public class Player : MonoBehaviour
             if (Physics.Raycast(ray, out RaycastHit hit))
 			{
                 var ball = Instantiate(Resources.Load<GameObject>("Ball"));
-                ball.GetComponent<Rigidbody>().AddForce(hit.point, ForceMode.Impulse);
-
-                // hit.point랑 방향벡터로 포물선식 구현하기
+                ball.transform.position = transform.position + Vector3.up;
+                ball.GetComponent<Ball>().Parabola(hit.point, 45f);
 			}
 		}
     }
@@ -39,8 +38,6 @@ public class Player : MonoBehaviour
 
         transform.position += new Vector3(moveVector3.x, 0, moveVector3.z) * moveSpeed * Time.deltaTime;
     }
-
-
 
     public void SetMoveVector(Vector2 vector, float speed, bool isMove)
     {

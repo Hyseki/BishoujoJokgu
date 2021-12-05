@@ -588,7 +588,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7274869528294787719, guid: 269a3c5985ffc9145936175b90059de4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7274869528294787719, guid: 269a3c5985ffc9145936175b90059de4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -638,7 +638,7 @@ GameObject:
   - component: {fileID: 1467460135}
   m_Layer: 0
   m_Name: Field
-  m_TagString: Untagged
+  m_TagString: Finish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
